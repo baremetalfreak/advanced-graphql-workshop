@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useMemo } from "react";
 import { parse, print } from "graphql";
 import hash from "djb2a";
 import stringify from "fast-json-stable-stringify";
@@ -18,13 +18,7 @@ export const createRequest = (operationName, query, variables) => {
 };
 
 export const useRequest = (operationName, query, variables) => {
-  const prev = useRef();
+  const request = createRequest(operationName, query, variables);
 
-  return useMemo(() => {
-    const request = createRequest(operationName, query, variables);
-    if (prev.current !== undefined && prev.current.key === request.key) {
-      return prev.current;
-    }
-    return (prev.current = request);
-  }, [operationName, query, variables]);
+  return useMemo(() => request, [request.key]);
 };

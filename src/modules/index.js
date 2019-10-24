@@ -27,7 +27,6 @@ const Home = () => {
   //TODO: Replace these with useQuery hook you wrote
 
   let { data, errors, fetching } = useQuery({
-    operationName: "query",
     query: THREADS_QUERY,
     variables: { sortBy: "LATEST" }
   });
