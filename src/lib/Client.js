@@ -26,6 +26,9 @@ export class Client {
     const { key } = operation;
     const listeners = this.listeners[key] || (this.listeners[key] = new Set());
     listeners.delete(cb);
+    if (listeners.size === 0) {
+      this.sendOperation({ ...operation, operationName: "teardown" });
+    }
   }
 
   onResult = result => {
