@@ -31,7 +31,6 @@ const Home = () => {
     variables: { sortBy: "LATEST" }
   });
 
-  console.log("---- RENDER ---------------", data);
   if (fetching) {
     return <p>Loading...</p>;
   } else {

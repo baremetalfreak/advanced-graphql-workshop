@@ -11,8 +11,6 @@ export const useQuery = ({ query, variables }) => {
     fetching: true
   });
 
-  console.log("---- REQUEST --------------", request);
-
   useEffect(() => {
     setResult(res => ({ ...res, fetching: true }));
 
